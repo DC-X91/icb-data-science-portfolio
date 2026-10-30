@@ -1,0 +1,17 @@
+# Track the branch-local .gitignore, never participant data or derived results.
+/databank/dataset-real/*
+!/databank/dataset-real/.gitignore
+
+# RStudio working/session state; may contain sensitive editor buffers.
+/.Rproj.user/
+/.Rhistory
+/.RData
+/.Ruserdata
+
+# Dropbox, editor, and OS artefacts.
+**/.AU.*.nosync/
+**/.DS_Store
+**/Thumbs.db
+*.swp
+*~
+*.zip

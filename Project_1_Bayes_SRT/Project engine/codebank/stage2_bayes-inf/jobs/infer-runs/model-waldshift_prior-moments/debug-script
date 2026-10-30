@@ -1,0 +1,96 @@
+#!/bin/sh
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# PRELIMINARIES: Load relevant modules; export MultiNest; define job-
+#    related variables
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#module purge
+module load mpi matlab intel-suite/2020.2 gcc
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$HOME/neuromechanisms-cognition/bayes-inf/MultiNest_v3.10/:/apps/MATLAB/R2017a/bin/matlab/bin/glnxa64/:/apps/MATLAB/R2017a/bin/matlab/sys/os/glnxa64/:/apps/MATLAB/R2017a/bin/glnxa64/
+
+jobid=${PBS_JOBID%[*}
+basejobid=${jobid}
+workdir=${PBS_O_WORKDIR}
+computedir=${TMPDIR}
+
+source ${workdir}/config-init.sh
+# Loads input vars: genutils, priorutils, gllfunc, llfunc, prior, ...
+#                   dataroot, auxmodelfuncs, auxmodelutils, ...
+#                   auxmodelinputs
+# Loads output vars: chainsroot
+# Loads general vars: unitname
+
+unitidx=4
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# PREPARE COMPUTE DIR FOR EXECUTION, LOAD INPUTS
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Working directories and scratch space
+# -------------------------------------
+
+tmpchains=${computedir}/chains/
+mkdir -p ${tmpchains}
+
+
+# Generic -- REQUIRED FILES
+# -------
+
+cp -ar ${libexport} ${computedir}
+cp -ar ${genutils} ${computedir}
+cp -ar ${priorutils} ${computedir}
+#echo $tmpgen | xargs -n 1 cp -ar $genutils
+#echo $tmpprior | xargs -n 1 cp -ar $priorutils
+
+
+# Job-specific  -- REQUIRED files
+# ------------
+
+cp -a ${workdir}/${gllfunc} ${computedir}   # Copy over loglike wrapper/interface/initiator
+cp -a ${llfunc} ${computedir}             # Copy over loglike function
+cp -a ${prior} ${computedir}/prior.mat    # Copy over prior
+cp -a ${dataroot}${unitidx}_*.mat ${computedir}/data.mat   # Copy over data file
+
+
+# Job-specific  --  auxiliary files
+# ------------
+cp -ar ${auxpriorfuncs} ${computedir}
+cp -ar ${auxmodelfuncs} ${computedir}
+cp -ar ${auxmodelutils} ${computedir}
+
+
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# PREPARE OUTPUTS
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Prepare save stage (Temp locn for checking results post-execution)
+# ------------------
+dtstr=`date +"%Y-%m-%d@%H%M"`
+savestage=${EPHEMERAL}/${dtstr}_${PBS_JOBNAME}_job-${jobid}/${unitname}${unitidx}
+configdir=${savestage}/config
+
+
+# Prepare logs dir (Location for saving output and error logs)
+# ----------------
+outputlogsdir=${workdir}/output-logs/basejob-${basejobid}/job-${jobid}
+
+
+# Prepare final output directory
+# ------------------------------
+mkdir -p ${chainsroot}
+chainsdir=${chainsroot}/job_${jobid}/${unitname}${unitidx}
+
+# Prepare output directories
+# --------------------------
+echo ${savestage} ${outputlogsdir} ${chainsdir} ${configdir} | xargs -n 1 mkdir -p
+cp -ar ${TMPDIR}/ ${configdir}/   # Take snapshot of job settings and save
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# EXECUTION AND CLEAN-UP: Run MultiNest fit, copy results to save
+#    stage for checking
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+#timeout 23h mpiexec ${workdir}/${execname}   # Comment in/out as appropriate while debugging

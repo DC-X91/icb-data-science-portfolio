@@ -1,0 +1,7 @@
+"ROI","RespVarSet","BestModel","BestModelNullBF"
+"medinffg","md_z","1+mdma_debut",-2.68088041361598
+"medinftempg","md_meanctr","1+avg_monthly_exposures+time_since_last_use+avg_dose_per_session",-2.41370670231324
+"medinftempg","md_z","1+avg_monthly_exposures+time_since_last_use+avg_dose_per_session",-3.01855057227635
+"medinftempg","md_meanscale","1+avg_monthly_exposures+time_since_last_use+avg_dose_per_session",-2.44606605805664
+"senmotc","md_meanctr","1+accumulated_dose",-3.18052719422454
+"senmotc","md_meanscale","1+accumulated_dose",-3.20994821243692

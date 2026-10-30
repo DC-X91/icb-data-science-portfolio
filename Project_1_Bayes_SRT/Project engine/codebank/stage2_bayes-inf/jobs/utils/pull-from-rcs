@@ -1,0 +1,52 @@
+#!/zsh
+
+# SET-UP -- IMPORTANT, check this line by line
+# ======
+
+remoteroot=/rds/general/user/dc1010/home/projects/bayes-srt/results/sim-study/stage2_bayes-inf
+localroot=~/Dropbox/Work/1-Research/investigations/bayes-srt/investigations/sim-study/results/stage2_bayes-inf
+modeldir=model-exwald_prior-moments1_job-2452457
+
+
+# PERFORM TRANSFER FROM REMOTE TO LOCAL
+# =====================================
+
+dataset=rocdd
+for ii in {1..5} 
+do
+   printf -v k "%02d" $ii
+   remotesrc=${remoteroot}/dataset-${dataset}/subject-${k}/${modeldir}/chains
+   localdest=${localroot}/dataset-${dataset}/subject-${k}/${modeldir}
+   mkdir -p ${localdest}
+   scp -r dc1010@login.hpc.ic.ac.uk:${remotesrc} ${localdest}
+done
+
+dataset=wald-shift
+for ii in {6..10} 
+do
+   printf -v k "%02d" $ii
+   remotesrc=${remoteroot}/dataset-${dataset}/subject-${k}/${modeldir}/chains
+   localdest=${localroot}/dataset-${dataset}/subject-${k}/${modeldir}
+   mkdir -p ${localdest}
+   scp -r dc1010@login.hpc.ic.ac.uk:${remotesrc} ${localdest}
+done
+
+dataset=exgaussian
+for ii in {11..15} 
+do
+   printf -v k "%02d" $ii
+   remotesrc=${remoteroot}/dataset-${dataset}/subject-${k}/${modeldir}/chains
+   localdest=${localroot}/dataset-${dataset}/subject-${k}/${modeldir}
+   mkdir -p ${localdest}
+   scp -r dc1010@login.hpc.ic.ac.uk:${remotesrc} ${localdest}
+done
+
+dataset=exwald
+for ii in {16..20} 
+do
+   printf -v k "%02d" $ii
+   remotesrc=${remoteroot}/dataset-${dataset}/subject-${k}/${modeldir}/chains
+   localdest=${localroot}/dataset-${dataset}/subject-${k}/${modeldir}
+   mkdir -p ${localdest}
+   scp -r dc1010@login.hpc.ic.ac.uk:${remotesrc} ${localdest}
+done
