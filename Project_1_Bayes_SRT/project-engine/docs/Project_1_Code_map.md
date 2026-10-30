@@ -5,22 +5,22 @@ The historical project engine is organised by analysis stage; the smaller `exemp
 ## Data and execution flow
 
 ```text
-Project engine/codebank/stage1_data-simulation/
+project-engine/codebank/stage1_data-simulation/
   MATLAB generators and fitted parameter selections
         ↓
-Project engine/databank/simdata-250/
+project-engine/databank/simdata-250/
   simulated per-subject MAT files
         ↓
-Project engine/codebank/stage2_bayes-inf/jobs/
+project-engine/codebank/stage2_bayes-inf/jobs/
   C callback → MATLAB Engine (prior + log likelihood) → MultiNest
   configured and launched using Bash / PBS / MPI
         ↓
-Project engine/codebank/stage2_bayes-inf/results/
+project-engine/codebank/stage2_bayes-inf/results/
   posterior draws, evidence and run statistics
         ↓
-Project engine/codebank/stage3_model-selection-analysis/
+project-engine/codebank/stage3_model-selection-analysis/
   within-subject and cross-subject model comparisons
-Project engine/codebank/stage4_param-estim-analysis/
+project-engine/codebank/stage4_param-estim-analysis/
   posterior-parameter recovery
 ```
 

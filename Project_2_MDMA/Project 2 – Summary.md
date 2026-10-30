@@ -64,13 +64,13 @@ I contributed the Bayesian statistical methodology, analysis, interpretation and
 ### Example code and data sources
 The example code illustrates my analytical and methodological contribution to this collaborative study. The supplied R engine is a **2026 reconstruction** of the earlier MATLAB analysis, run here on synthetic rather than participant-level data. This allows the operation of the statistical workflow to be demonstrated without distributing the original research observations. The reconstructed computing environment is not the exact historical one, and its synthetic outputs do not reproduce the empirical findings.
 
-The `Project engine` directory contains the executable R workflow, synthetic inputs and outputs, and supporting documentation. The retained `dataset-real` branch contains restricted research data and derived results; it must be excluded from any external submission without data-controller approval. A `.gitignore` file does not, by itself, exclude these files from a manually prepared ZIP archive.
+The `project-engine` directory contains the executable R workflow, synthetic inputs and outputs, and supporting documentation. The retained `dataset-real` branch contains restricted research data and derived results; it must be excluded from any external submission without data-controller approval. A `.gitignore` file does not, by itself, exclude these files from a manually prepared ZIP archive.
 
 See:
 
-- `Project engine/README.md`
-- `Project engine/docs/CODE_MAP.md`
-- `Project engine/docs/SYNTHETIC_DATA.md`
+- `project-engine/README.md`
+- `project-engine/docs/CODE_MAP.md`
+- `project-engine/docs/SYNTHETIC_DATA.md`
 
 for details of the implementation, synthetic data and remaining audit limitations.
 
