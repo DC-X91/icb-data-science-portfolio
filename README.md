@@ -1,6 +1,6 @@
 # Technical portfolio | Two Bayesian research projects
 
-This portfolio presents two examples of statistical modelling and scientific computing. The summaries are the best starting points; the code maps explain the implementation, and the selected examples illustrate particular execution paths.
+This portfolio presents two examples of statistical modelling and scientific computing. The README.md summaries in the project directories are the best starting points; the code maps in under each projects `Project engine/docs` provide overviews of the implementation, and an exemplar contained in the `exemplar` directory in the first project traces one path through a multi-stage parallelised workflow.
 
 ## Project 1 — Bayesian modelling of simple reaction time
 
