@@ -5,7 +5,7 @@ This portfolio presents two examples of statistical modelling and scientific com
 ## Project 1 — Bayesian modelling of simple reaction time
 
 - **Start:** [`Project_1_Bayes_SRT/Project 1 – Summary.md`](Project_1_Bayes_SRT/Project%201%20%E2%80%93%20Summary.md)
-- **Implementation:** [`Project_1_Architecture_note.md`](Project_1_Bayes_SRT/Project_1_Architecture_note.md) and [`Project_1_Code_map.md`](Project_1_Bayes_SRT/Project_1_Code_map.md)
+- **Implementation:**  [`Project_1_Code_map.md`](Project_1_Bayes_SRT/Project engine/docs/Project_1_Code_map.md)
 - **Example:** [`exemplar/README.md`](Project_1_Bayes_SRT/exemplar/README.md)
 
 The PhD project integrated MATLAB modelling, C/MATLAB Engine callbacks, MultiNest nested sampling, and HPC batch execution. The selected example contains genuine archived results for 250 simulated reaction times and a reproducible numerical likelihood check. The original cluster installation is **not** packaged as a portable executable.
